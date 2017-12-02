@@ -1,12 +1,15 @@
-console.log('this is loaded');
-
 var twitterKeys = {
-  consumer_key: '	56QzoSwumes14sIMeGiNZtJ27',
-  consumer_secret: 'qIQmpzzgsH7UIgZbV4ZdZg7N8nsn80iqr2Y69IB42Pq6E2aVnZ',
-  access_token_key: '2709117248-d3uYGwznJJ7bvIraa2s60jZAG9bV5eXgLbASEZV',
-  access_token_secret: 'Kv0U7sjB8TX4FQTPPQvryerNL7Us5gSo0qi6B2fu8mi5f',
+  consumer_key: 'AZSDVvj4ENzrK6tY5CZe2DuYD',
+  consumer_secret: 'cvsfc3zctgcrhmvVgbHmmx6rPnG14PUWhnaai9DCDQ4fcaHIJs',
+  access_token_key: '937010178532302849-zfp4YjHH4xWmIWgUhKqY6YIHTp4fqpR',
+  access_token_secret: 'JJW5WFvYZsQV9CrYl4p4YV7Tucj418WVhGXGDOeEPIn7v',
 }
 
-module.exports = twitterKeys;
+var spotifyKeys = {
+  id: 'da5864f61e824054bf3ca058bc456aa6',
+  secret: 'a0167c78adfe4bb29362c29582212082'
+}
+
+module.exports = {twitterKeys, spotifyKeys};
 
 
