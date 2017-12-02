@@ -11,7 +11,7 @@ switch (process.argv[2]) {
     getSong(process.argv[3]);
     break;
   case "movie-this":
-    getMovie();
+    getMovie(process.argv[3]);
     break;
   case "do-what-it-says":
     doRandom();
@@ -41,11 +41,13 @@ function getSong(title) {
       return console.log("Error occurred: " + err);
     }
     if (data.tracks.items.length === 0) {
-      return console.log(`"${title}" is not a known song title. Try something else.`);
+      console.log(`"${title}" is not a known song title. Try something else.`);
     } else {
       var match = data.tracks.items[0];
       console.log(
-        `"${match.name}" is by the band or artist ${match.artists[0].name} from the album ${match.album.name}.`
+        `"${match.name}" is by the band or artist ${
+          match.artists[0].name
+        } from the album ${match.album.name}.`
       );
       match.preview_url
         ? console.log(`You can preview it here: ${match.preview_url}`)
@@ -54,8 +56,33 @@ function getSong(title) {
   });
 }
 
-function getMovie() {
-  console.log("movie time");
+function getMovie(title) {
+  var request = require("request");
+  request(`http://www.omdbapi.com/?t=${title}&apikey=${keys.omdbKey}`, function(
+    err,
+    response,
+    body
+  ) {
+    var body = JSON.parse(body);
+
+    if (err) {
+      return console.log("Error occurred: " + err);
+    }
+    if (body.Response === "False") {
+      console.log(`"${title}" is not a known movie title. Try something else.`);
+    } else {
+      console.log(
+        
+        `${body.Title} was released in ${body.Year}. 
+      It has an IMDB rating of ${
+        body.imdbRating
+      } and a Rotten Tomatoes rating of ${body.Metascore}.
+      It was produced in ${body.Country} and the language is ${body.Language}.
+      In this movie, ${body.Plot}.
+      It stars ${body.Actors}.`
+      );
+    }
+  });
 }
 
 function doRandom() {
