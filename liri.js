@@ -92,6 +92,12 @@ function getSong(title) {
 }
 
 function getMovie(title) {
+  if (!title) {
+    title = "Mr. Nobody";
+    console.log(`If you haven't watched "Mr. Nobody," then you should: http://www.imdb.com/title/tt0485947/`)
+    console.log(`It's on Netflix!`);
+    console.log(`Here is some info about it ...`)
+  }
   const request = require("request");
   request(`http://www.omdbapi.com/?t=${title}&apikey=${keys.omdbKey}`, function(
     err,
